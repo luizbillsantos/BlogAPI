@@ -28,6 +28,12 @@ namespace Api.Domain.Entities
         [ForeignKey("Geo")]
         public int GeoId { get; set; }
 
+        [Required]
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+
         public virtual GeoEntity Geo { get; set; }
+
+        public virtual UserEntity User { get; set; }
     }
 }

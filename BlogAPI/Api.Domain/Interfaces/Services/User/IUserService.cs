@@ -14,7 +14,7 @@ namespace Api.Domain.Interfaces.Services.User
 
         Task<UserDto> Post(UserDtoCreate user);
 
-        Task<UserDtoCreate> Put(UserDtoCreate user);
+        Task<UserDto> Put(UserDtoCreate user);
 
         Task<bool> Delete(int id);
     }
