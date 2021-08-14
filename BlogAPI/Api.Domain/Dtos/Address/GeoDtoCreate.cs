@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Api.Domain.Entities
+namespace Api.Domain.Dtos
 {
-    public class GeoEntity : BaseEntity
+    public class GeoDtoCreate
     {
-        [Required]
+        [Required(ErrorMessage = "Lat é um campo obrigatório")]
         public decimal Lat { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Lng é um campo obrigatório")]
         public decimal Lng { get; set; }
-
-        public virtual IEnumerable<AddressEntity> Addressess { get; set; }
     }
 }

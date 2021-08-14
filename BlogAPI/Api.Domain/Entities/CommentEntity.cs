@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Api.Domain.Entities
 {
-    public class Comment : BaseEntity
+    public class CommentEntity : BaseEntity
     {
         [Required]
         [ForeignKey("Post")]
@@ -24,6 +24,6 @@ namespace Api.Domain.Entities
         [MaxLength(244)]
         public string Body { get; set; }
 
-        public virtual BlogPost Post { get; set; }
+        public virtual BlogPostEntity Post { get; set; }
     }
 }

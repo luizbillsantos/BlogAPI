@@ -6,23 +6,24 @@ using System.Text;
 
 namespace Api.Domain.Entities
 {
-    public class BlogPost : BaseEntity
+    public class PhotoEntity : BaseEntity
     {
+        [Required]
+        [ForeignKey("Album")]
+        public int AlbumId { get; set; }
+
         [Required]
         [MaxLength(244)]
         public string Title { get; set; }
 
         [Required]
-        [MaxLength(8000)]
-        public string Body { get; set; }
+        [MaxLength(244)]
+        public string Url { get; set; }
 
         [Required]
-        [ForeignKey("User")]
-        public int UserId { get; set; }
+        [MaxLength(244)]
+        public string ThumbnailUrl { get; set; }
 
-        public virtual UserEntity User { get; set; }
-
-        public virtual IEnumerable<Comment> Comments { get; set; }
-
+        public virtual AlbumEntity Album { get; set; }
     }
 }

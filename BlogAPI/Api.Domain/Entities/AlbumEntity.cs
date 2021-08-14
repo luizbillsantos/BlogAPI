@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Api.Domain.Entities
 {
-    public class Album : BaseEntity
+    public class AlbumEntity : BaseEntity
     {
         [Required]
         [ForeignKey("User")]
@@ -18,6 +18,6 @@ namespace Api.Domain.Entities
 
         public virtual UserEntity User { get; set; }
 
-        public virtual IEnumerable<Photo> Photos { get; set; }
+        public virtual IEnumerable<PhotoEntity> Photos { get; set; }
     }
 }

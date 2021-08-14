@@ -38,8 +38,8 @@ namespace Api.Domain.Entities
 
         public virtual CompanyEntity Company { get; set; }
 
-        public virtual IEnumerable<BlogPost> Posts { get; set; }
+        public virtual IEnumerable<BlogPostEntity> Posts { get; set; }
 
-        public virtual IEnumerable<Album> Albums { get; set; }
+        public virtual IEnumerable<AlbumEntity> Albums { get; set; }
     }
 }
