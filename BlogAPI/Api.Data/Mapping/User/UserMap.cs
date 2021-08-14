@@ -33,7 +33,7 @@ namespace Api.Data.Mapping
             builder.Property(u => u.WebSite)
                    .HasMaxLength(100);
 
-            builder.HasOne(a => a.Address).WithOne(b => b.User);
+            builder.HasOne(a => a.Address);
             builder.HasOne(a => a.Company).WithMany(b => b.User);
         }
     }

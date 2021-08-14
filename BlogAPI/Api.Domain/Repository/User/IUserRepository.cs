@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Api.Domain.Repository
 {
-    interface IUserRepository : IRepository<UserEntity>
+    public interface IUserRepository : IRepository<UserEntity>
     {
         Task<UserEntity> FindByLogin(string email);
 
