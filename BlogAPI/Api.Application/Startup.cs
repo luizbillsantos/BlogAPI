@@ -36,16 +36,6 @@ namespace Api.Application
         public void ConfigureServices(IServiceCollection services)
         {
 
-            if (_environment.IsEnvironment("Testing"))
-            {
-                Environment.SetEnvironmentVariable("DB_CONNECTION", "Data Source=PREDATOR;Initial Catalog=dbApi_Integration;Persist Security Info=True;User ID=sa;Password=1234");
-                Environment.SetEnvironmentVariable("DATABASE", "SQLSERVER");
-                Environment.SetEnvironmentVariable("MIGRATION", "APLICAR");
-                Environment.SetEnvironmentVariable("Audience", "ExemploAudience");
-                Environment.SetEnvironmentVariable("Issuer", "ExemploIssuer");
-                Environment.SetEnvironmentVariable("Seconds", "3600");
-            }
-
             services.AddControllers();
 
             ConfigureService.ConfigureDepenciesService(services);
