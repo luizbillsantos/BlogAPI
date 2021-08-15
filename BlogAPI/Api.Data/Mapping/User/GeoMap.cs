@@ -15,10 +15,10 @@ namespace Api.Data.Mapping
             builder.HasKey(u => u.Id);
 
             builder.Property(u => u.Lat)
-                   .IsRequired();
+                   .IsRequired().HasColumnType("DECIMAL(18,6)");
 
             builder.Property(u => u.Lng)
-                   .IsRequired();
+                   .IsRequired().HasColumnType("DECIMAL(18,6)");
         }
     }
 }

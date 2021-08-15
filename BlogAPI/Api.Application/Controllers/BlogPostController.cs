@@ -100,29 +100,29 @@ namespace Api.Application.Controllers
             }
         }
 
-        /// <summary>
-        /// Delete Post from DB
-        /// </summary>
-        /// <param name="id">User Id</param>
-        /// <returns>Bool</returns>
-        [HttpDelete]
-        [Route("{id}", Name = "/blogpost/Delete")]
-        [Authorize("Bearer")]
-        public async Task<ActionResult> Delete(int id)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+        ///// <summary>
+        ///// Delete Post from DB
+        ///// </summary>
+        ///// <param name="id">User Id</param>
+        ///// <returns>Bool</returns>
+        //[HttpDelete]
+        //[Route("{id}", Name = "/blogpost/Delete")]
+        //[Authorize("Bearer")]
+        //public async Task<ActionResult> Delete(int id)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return BadRequest(ModelState);
 
-            try
-            {
-                return Ok(await _service.Delete(id));
-            }
-            catch (ArgumentException e)
-            {
+        //    try
+        //    {
+        //        return Ok(await _service.Delete(id));
+        //    }
+        //    catch (ArgumentException e)
+        //    {
 
-                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
-            }
-        }
+        //        return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+        //    }
+        //}
 
     }
 }

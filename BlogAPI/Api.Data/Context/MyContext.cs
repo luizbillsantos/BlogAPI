@@ -26,6 +26,7 @@ namespace Api.Data.Context
 
         public MyContext(DbContextOptions<MyContext> options) : base(options)
         {
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -50,7 +51,6 @@ namespace Api.Data.Context
                 Bs = "Meu Teste Técnico"
             });
 
-
             modelBuilder.Entity<GeoEntity>().HasData(new GeoEntity()
             {
                 Id = 1,
@@ -64,7 +64,7 @@ namespace Api.Data.Context
             {
                 Id = 1,
                 Name = "Administrador",
-                Email = "luizbillsantos@gmail.com",
+                Email = "luizbillsantos@live.com",
                 UserName = "luizbillsantos",
                 Phone = "5541999642960",
                 CreateAt = DateTime.Now,

@@ -15,22 +15,21 @@ namespace Api.Application.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CommentController : ControllerBase
+    public class PhotoController : ControllerBase
     {
+        private IPhotoService _service;
+        private IAlbumRepository _repository;
 
-        private ICommentService _service;
-        private IBlogPostRepository _repository;
-
-        public CommentController(ICommentService service, IBlogPostRepository repository)
+        public PhotoController(IPhotoService service, IAlbumRepository repository)
         {
             _service = service;
             _repository = repository;
         }
 
         /// <summary>
-        /// List all comments 
+        /// List all photos 
         /// </summary>
-        /// <returns>List of comments</returns>
+        /// <returns>List of photos</returns>
         [HttpGet]
         [Authorize("Bearer")]
         public async Task<ActionResult> GetAll()
@@ -50,13 +49,13 @@ namespace Api.Application.Controllers
         }
 
         /// <summary>
-        /// Get comment by Id
+        /// Get photo by Id
         /// </summary>
-        /// <param name="id">comment Id</param>
-        /// <returns>Comment</returns>
+        /// <param name="id">Photo Id</param>
+        /// <returns>Photo</returns>
         [HttpGet]
         [Authorize("Bearer")]
-        [Route("{id}", Name = "/comment/Get")]
+        [Route("{id}", Name = "/photo/Get")]
         public async Task<ActionResult> Get(int id)
         {
             if (!ModelState.IsValid)
@@ -74,31 +73,35 @@ namespace Api.Application.Controllers
         }
 
         /// <summary>
-        /// Save new comment 
+        /// Save new photo 
         /// </summary>
-        /// <param name="user">Comment</param>
+        /// <param name="user">Photo</param>
         /// <returns>Object Saved</returns>
         [HttpPost]
         [Authorize("Bearer")]
-        public async Task<ActionResult> Post([FromBody] CommentDtoCreate comment)
+        public async Task<ActionResult> Post([FromBody] PhotoDtoCreate photo)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             try
             {
-                if (await _repository.ExistAsync(comment.PostId))
+                var userLogged = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Name));
+                var album = await _repository.SelectAsync(photo.AlbumId);
+                if(album == null)
+                    return BadRequest("Album não encontrado");
+
+                if (album?.UserId == userLogged)
                 {
-                    var userLogged = User.FindFirstValue(ClaimTypes.Name);
-                    comment.UserId = Convert.ToInt32(userLogged);
-                    var result = await _service.Post(comment);
+                    
+                    var result = await _service.Post(photo);
                     if (result != null)
                         return Created(new Uri(Url.Link("Get", new { id = result.Id })), result);
                     else
                         return BadRequest();
                 }
                 else
-                    return BadRequest("PostId informado não existe");
+                    return BadRequest("Não é permitido adicionar fotos em albuns de outros usuários");
             }
             catch (ArgumentException e)
             {
@@ -108,12 +111,12 @@ namespace Api.Application.Controllers
         }
 
         ///// <summary>
-        ///// Delete comment from DB
+        ///// Delete photo from DB
         ///// </summary>
-        ///// <param name="id">Comment Id</param>
+        ///// <param name="id">Photo Id</param>
         ///// <returns>Bool</returns>
         //[HttpDelete]
-        //[Route("{id}", Name = "/comment/Delete")]
+        //[Route("{id}", Name = "/photo/Delete")]
         //[Authorize("Bearer")]
         //public async Task<ActionResult> Delete(int id)
         //{

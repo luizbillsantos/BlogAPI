@@ -72,11 +72,11 @@ namespace Api.Data.Migrations
                         {
                             Id = 1,
                             City = "Lapa",
-                            CreateAt = new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(5829),
+                            CreateAt = new DateTime(2021, 8, 15, 14, 13, 55, 845, DateTimeKind.Local).AddTicks(3562),
                             GeoId = 1,
                             Street = "Estrada do Lara",
                             Suite = "Casa",
-                            UpdateAt = new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(5851),
+                            UpdateAt = new DateTime(2021, 8, 15, 14, 13, 55, 845, DateTimeKind.Local).AddTicks(3568),
                             UserId = 1,
                             ZipCode = "83750-000"
                         });
@@ -174,9 +174,14 @@ namespace Api.Data.Migrations
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PostId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comment");
                 });
@@ -219,9 +224,9 @@ namespace Api.Data.Migrations
                             Id = 1,
                             Bs = "Meu Teste Técnico",
                             CatchPhrase = "Teste",
-                            CreateAt = new DateTime(2021, 8, 14, 20, 43, 38, 983, DateTimeKind.Local).AddTicks(6239),
+                            CreateAt = new DateTime(2021, 8, 15, 14, 13, 55, 842, DateTimeKind.Local).AddTicks(9186),
                             Name = "BillSoft",
-                            UpdateAt = new DateTime(2021, 8, 14, 20, 43, 38, 985, DateTimeKind.Local).AddTicks(3754)
+                            UpdateAt = new DateTime(2021, 8, 15, 14, 13, 55, 843, DateTimeKind.Local).AddTicks(9024)
                         });
                 });
 
@@ -236,10 +241,10 @@ namespace Api.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Lat")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("DECIMAL(18,6)");
 
                     b.Property<decimal>("Lng")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("DECIMAL(18,6)");
 
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime2");
@@ -252,10 +257,10 @@ namespace Api.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(629),
+                            CreateAt = new DateTime(2021, 8, 15, 14, 13, 55, 845, DateTimeKind.Local).AddTicks(981),
                             Lat = -25.722589m,
                             Lng = -49.763019m,
-                            UpdateAt = new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(661)
+                            UpdateAt = new DateTime(2021, 8, 15, 14, 13, 55, 845, DateTimeKind.Local).AddTicks(1004)
                         });
                 });
 
@@ -350,11 +355,11 @@ namespace Api.Data.Migrations
                         {
                             Id = 1,
                             CompanyId = 1,
-                            CreateAt = new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(3359),
-                            Email = "luizbillsantos@gmail.com",
+                            CreateAt = new DateTime(2021, 8, 15, 14, 13, 55, 845, DateTimeKind.Local).AddTicks(2573),
+                            Email = "luizbillsantos@live.com",
                             Name = "Administrador",
                             Phone = "5541999642960",
-                            UpdateAt = new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(3367),
+                            UpdateAt = new DateTime(2021, 8, 15, 14, 13, 55, 845, DateTimeKind.Local).AddTicks(2581),
                             UserName = "luizbillsantos"
                         });
                 });
@@ -398,6 +403,12 @@ namespace Api.Data.Migrations
                         .WithMany("Comments")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api.Domain.Entities.UserEntity", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 

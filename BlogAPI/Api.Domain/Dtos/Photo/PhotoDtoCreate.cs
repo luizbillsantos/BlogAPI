@@ -19,5 +19,10 @@ namespace Api.Domain.Dtos
         [Required(ErrorMessage = "ThumbnailUrl é um campo obrigatório")]
         [StringLength(244, ErrorMessage = "ThumbnailUrl deve ter no máximo {1} caracteres")]
         public string ThumbnailUrl { get; set; }
+
+        [Required(ErrorMessage = "AlbumId é um campo obrigatório")]
+        [Range(1, int.MaxValue, ErrorMessage = "AlbumId é um campo obrigatório")]
+        public int AlbumId { get; set; }
+        
     }
 }

@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Api.Domain.Dtos
 {
@@ -16,8 +16,7 @@ namespace Api.Domain.Dtos
         [StringLength(8000, ErrorMessage = "Body deve ter no máximo {1} caracteres")]
         public string Body { get; set; }
 
-        [System.Text.Json.Serialization.JsonIgnore]
-        [Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public int UserId { get; set; }
 
     }

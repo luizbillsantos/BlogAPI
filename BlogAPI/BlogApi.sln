@@ -5,13 +5,15 @@ VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Application", "Api.Application\Api.Application.csproj", "{7EB07CEC-A200-4A27-A8F2-62E29304AF6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Data", "Api.Data\Api.Data.csproj", "{2C424BD9-DEE4-4EFD-86F9-4DA41899531C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Data", "Api.Data\Api.Data.csproj", "{2C424BD9-DEE4-4EFD-86F9-4DA41899531C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Domain", "Api.Domain\Api.Domain.csproj", "{5BC0D9FA-07F5-40E7-9FD3-62495C524A09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Domain", "Api.Domain\Api.Domain.csproj", "{5BC0D9FA-07F5-40E7-9FD3-62495C524A09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Service", "Api.Service\Api.Service.csproj", "{9629D696-F16C-4FB2-98C5-8CE434347E2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Service", "Api.Service\Api.Service.csproj", "{9629D696-F16C-4FB2-98C5-8CE434347E2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.CrossCutting", "Api.CrossCutting\Api.CrossCutting.csproj", "{9CDE8D1A-DAF9-423B-8E45-E8B35AEE3500}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.CrossCutting", "Api.CrossCutting\Api.CrossCutting.csproj", "{9CDE8D1A-DAF9-423B-8E45-E8B35AEE3500}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Data.Test", "Api.Data.Test\Api.Data.Test.csproj", "{D7BC36B2-D942-4BC5-91FE-1B419E364FD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{9CDE8D1A-DAF9-423B-8E45-E8B35AEE3500}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CDE8D1A-DAF9-423B-8E45-E8B35AEE3500}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CDE8D1A-DAF9-423B-8E45-E8B35AEE3500}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7BC36B2-D942-4BC5-91FE-1B419E364FD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7BC36B2-D942-4BC5-91FE-1B419E364FD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7BC36B2-D942-4BC5-91FE-1B419E364FD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7BC36B2-D942-4BC5-91FE-1B419E364FD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

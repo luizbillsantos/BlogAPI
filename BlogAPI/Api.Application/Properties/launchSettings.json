@@ -17,6 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DB_CONNECTION": "Data Source=Predator;Initial Catalog=BlogApi;Persist Security Info=True;User ID=sa;Password=1234",
         "DATABASE": "SQLSERVER",
+        "MIGRATION": "APLICAR",
         "Audience": "ExemploAudience",
         "Issuer": "ExemploIssuer",
         "Seconds": "3600"
@@ -31,6 +32,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DB_CONNECTION": "Data Source=Predator;Initial Catalog=BlogApi;Persist Security Info=True;User ID=sa;Password=1234",
         "DATABASE": "SQLSERVER",
+        "MIGRATION": "APLICAR",
         "Audience": "ExemploAudience",
         "Issuer": "ExemploIssuer",
         "Seconds": "3600"

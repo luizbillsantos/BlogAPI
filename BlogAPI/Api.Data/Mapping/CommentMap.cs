@@ -28,7 +28,7 @@ namespace Api.Data.Mapping
 
             builder.HasOne(a => a.Post).WithMany(b => b.Comments);
 
-            builder.HasOne(a => a.User).WithMany(b => b.Comments);
+            builder.HasOne(a => a.User).WithMany(b => b.Comments).OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

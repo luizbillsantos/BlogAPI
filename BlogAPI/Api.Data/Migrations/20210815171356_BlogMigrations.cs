@@ -32,8 +32,8 @@ namespace Api.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreateAt = table.Column<DateTime>(nullable: true),
                     UpdateAt = table.Column<DateTime>(nullable: true),
-                    Lat = table.Column<decimal>(nullable: false),
-                    Lng = table.Column<decimal>(nullable: false)
+                    Lat = table.Column<decimal>(type: "DECIMAL(18,6)", nullable: false),
+                    Lng = table.Column<decimal>(type: "DECIMAL(18,6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -178,7 +178,8 @@ namespace Api.Data.Migrations
                     PostId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Email = table.Column<string>(maxLength: 50, nullable: false),
-                    Body = table.Column<string>(maxLength: 244, nullable: false)
+                    Body = table.Column<string>(maxLength: 244, nullable: false),
+                    UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -189,27 +190,32 @@ namespace Api.Data.Migrations
                         principalTable: "BlogPost",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Comment_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
                 table: "Company",
                 columns: new[] { "Id", "Bs", "CatchPhrase", "CreateAt", "Name", "UpdateAt" },
-                values: new object[] { 1, "Meu Teste Técnico", "Teste", new DateTime(2021, 8, 14, 20, 43, 38, 983, DateTimeKind.Local).AddTicks(6239), "BillSoft", new DateTime(2021, 8, 14, 20, 43, 38, 985, DateTimeKind.Local).AddTicks(3754) });
+                values: new object[] { 1, "Meu Teste Técnico", "Teste", new DateTime(2021, 8, 15, 14, 13, 55, 842, DateTimeKind.Local).AddTicks(9186), "BillSoft", new DateTime(2021, 8, 15, 14, 13, 55, 843, DateTimeKind.Local).AddTicks(9024) });
 
             migrationBuilder.InsertData(
                 table: "Geo",
                 columns: new[] { "Id", "CreateAt", "Lat", "Lng", "UpdateAt" },
-                values: new object[] { 1, new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(629), -25.722589m, -49.763019m, new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(661) });
+                values: new object[] { 1, new DateTime(2021, 8, 15, 14, 13, 55, 845, DateTimeKind.Local).AddTicks(981), -25.722589m, -49.763019m, new DateTime(2021, 8, 15, 14, 13, 55, 845, DateTimeKind.Local).AddTicks(1004) });
 
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "CompanyId", "CreateAt", "Email", "Name", "Phone", "UpdateAt", "UserName", "WebSite" },
-                values: new object[] { 1, 1, new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(3359), "luizbillsantos@gmail.com", "Administrador", "5541999642960", new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(3367), "luizbillsantos", null });
+                values: new object[] { 1, 1, new DateTime(2021, 8, 15, 14, 13, 55, 845, DateTimeKind.Local).AddTicks(2573), "luizbillsantos@live.com", "Administrador", "5541999642960", new DateTime(2021, 8, 15, 14, 13, 55, 845, DateTimeKind.Local).AddTicks(2581), "luizbillsantos", null });
 
             migrationBuilder.InsertData(
                 table: "Address",
                 columns: new[] { "Id", "City", "CreateAt", "GeoId", "Street", "Suite", "UpdateAt", "UserId", "ZipCode" },
-                values: new object[] { 1, "Lapa", new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(5829), 1, "Estrada do Lara", "Casa", new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(5851), 1, "83750-000" });
+                values: new object[] { 1, "Lapa", new DateTime(2021, 8, 15, 14, 13, 55, 845, DateTimeKind.Local).AddTicks(3562), 1, "Estrada do Lara", "Casa", new DateTime(2021, 8, 15, 14, 13, 55, 845, DateTimeKind.Local).AddTicks(3568), 1, "83750-000" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Address_GeoId",
@@ -236,6 +242,11 @@ namespace Api.Data.Migrations
                 name: "IX_Comment_PostId",
                 table: "Comment",
                 column: "PostId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comment_UserId",
+                table: "Comment",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Photo_AlbumId",

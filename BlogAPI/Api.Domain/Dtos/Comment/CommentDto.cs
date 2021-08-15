@@ -15,5 +15,7 @@ namespace Api.Domain.Dtos
         public string Email { get; set; }
 
         public string Body { get; set; }
+
+        public int UserId { get; set; }
     }
 }

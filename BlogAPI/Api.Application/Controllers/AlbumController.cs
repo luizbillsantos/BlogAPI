@@ -1,6 +1,5 @@
 ﻿using Api.Domain.Dtos;
 using Api.Domain.Interfaces.Services;
-using Api.Domain.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,22 +14,20 @@ namespace Api.Application.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CommentController : ControllerBase
+    public class AlbumController : ControllerBase
     {
 
-        private ICommentService _service;
-        private IBlogPostRepository _repository;
+        private IAlbumService _service;
 
-        public CommentController(ICommentService service, IBlogPostRepository repository)
+        public AlbumController(IAlbumService service)
         {
             _service = service;
-            _repository = repository;
         }
 
         /// <summary>
-        /// List all comments 
+        /// List all albums 
         /// </summary>
-        /// <returns>List of comments</returns>
+        /// <returns>List of albums</returns>
         [HttpGet]
         [Authorize("Bearer")]
         public async Task<ActionResult> GetAll()
@@ -50,13 +47,13 @@ namespace Api.Application.Controllers
         }
 
         /// <summary>
-        /// Get comment by Id
+        /// Get album by Id
         /// </summary>
-        /// <param name="id">comment Id</param>
-        /// <returns>Comment</returns>
+        /// <param name="id">album Id</param>
+        /// <returns>Album</returns>
         [HttpGet]
         [Authorize("Bearer")]
-        [Route("{id}", Name = "/comment/Get")]
+        [Route("{id}", Name = "/album/Get")]
         public async Task<ActionResult> Get(int id)
         {
             if (!ModelState.IsValid)
@@ -74,31 +71,27 @@ namespace Api.Application.Controllers
         }
 
         /// <summary>
-        /// Save new comment 
+        /// Save new album 
         /// </summary>
-        /// <param name="user">Comment</param>
+        /// <param name="user">Album</param>
         /// <returns>Object Saved</returns>
         [HttpPost]
         [Authorize("Bearer")]
-        public async Task<ActionResult> Post([FromBody] CommentDtoCreate comment)
+        public async Task<ActionResult> Post([FromBody] AlbumDtoCreate album)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             try
             {
-                if (await _repository.ExistAsync(comment.PostId))
-                {
-                    var userLogged = User.FindFirstValue(ClaimTypes.Name);
-                    comment.UserId = Convert.ToInt32(userLogged);
-                    var result = await _service.Post(comment);
+                var userLogged = User.FindFirstValue(ClaimTypes.Name);
+                album.UserId = Convert.ToInt32(userLogged);
+
+                var result = await _service.Post(album);
                     if (result != null)
                         return Created(new Uri(Url.Link("Get", new { id = result.Id })), result);
                     else
                         return BadRequest();
-                }
-                else
-                    return BadRequest("PostId informado não existe");
             }
             catch (ArgumentException e)
             {
@@ -108,12 +101,12 @@ namespace Api.Application.Controllers
         }
 
         ///// <summary>
-        ///// Delete comment from DB
+        ///// Delete album from DB
         ///// </summary>
-        ///// <param name="id">Comment Id</param>
+        ///// <param name="id">Album Id</param>
         ///// <returns>Bool</returns>
         //[HttpDelete]
-        //[Route("{id}", Name = "/comment/Delete")]
+        //[Route("{id}", Name = "/album/Delete")]
         //[Authorize("Bearer")]
         //public async Task<ActionResult> Delete(int id)
         //{
