@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Api.Domain.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Api.Data.Context;
+using System.Linq;
 
 namespace Api.Data.Implementations
 {
@@ -25,9 +26,14 @@ namespace Api.Data.Implementations
             return await _dataset.FirstOrDefaultAsync(a => a.Email.Equals(email));
         }
 
-        public Task<UserDto> GetCompleteById(int id)
+        public async Task<List<UserEntity>> GetAllComplete()
         {
-            throw new NotImplementedException();
+            return await _dataset.Include("Address.Geo").Include("Company").ToListAsync();
+        }
+
+        public async Task<UserEntity> GetCompleteById(int id)
+        {
+            return await _dataset.Include("Address.Geo").Include("Company").FirstOrDefaultAsync( a => a.Id == id);
         }
     }
 }

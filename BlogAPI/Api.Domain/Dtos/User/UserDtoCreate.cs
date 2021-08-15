@@ -27,5 +27,11 @@ namespace Api.Domain.Dtos
         [StringLength(100, ErrorMessage = "WebSite deve ter no máximo {1} caracteres")]
         public string WebSite { get; set; }
 
+        [Required]
+        public AddressDtoCreate Address { get; set; }
+
+        [Required]
+        public CompanyDtoCreate Company { get; set; }
+
     }
 }

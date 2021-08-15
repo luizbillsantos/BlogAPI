@@ -10,50 +10,51 @@ using System.Threading.Tasks;
 
 namespace Api.Service.Services
 {
-    public class PostService : IBlogPostService
+    public class CompanyService : ICompanyService
     {
-        private IRepository<BlogPostEntity> _repository;
+
+        private IRepository<CompanyEntity> _repository;
         private readonly IMapper _Mapper;
 
-        public PostService(IRepository<BlogPostEntity> repository, IMapper mapper)
+
+        public CompanyService(IRepository<CompanyEntity> repository, IMapper mapper)
         {
             _repository = repository;
             _Mapper = mapper;
         }
-
 
         public async Task<bool> Delete(int id)
         {
             return await _repository.DeleteAsync(id);
         }
 
-        public async Task<BlogPostDto> Get(int id)
+        public async Task<CompanyDto> Get(int id)
         {
             var entity = await _repository.SelectAsync(id);
-            return _Mapper.Map<BlogPostDto>(entity);
+            return _Mapper.Map<CompanyDto>(entity);
         }
 
-        public async Task<IEnumerable<BlogPostDto>> GetAll()
+        public async Task<IEnumerable<CompanyDto>> GetAll()
         {
             var listEntity = await _repository.SelectAsync();
 
-            return _Mapper.Map<IEnumerable<BlogPostDto>>(listEntity);
+            return _Mapper.Map<IEnumerable<CompanyDto>>(listEntity);
         }
 
-        public async Task<BlogPostDto> Post(BlogPostDtoCreate post)
+        public async Task<CompanyDto> Post(CompanyDtoCreate Company)
         {
-            var entity = _Mapper.Map<BlogPostEntity>(post);
+            var entity = _Mapper.Map<CompanyEntity>(Company);
             var result = await _repository.InsertAsync(entity);
 
-            return _Mapper.Map<BlogPostDto>(result);
+            return _Mapper.Map<CompanyDto>(result);
         }
 
-        public async Task<BlogPostDto> Put(BlogPostDtoCreate post)
+        public async Task<CompanyDto> Put(CompanyDtoCreate Company)
         {
-            var entity = _Mapper.Map<BlogPostEntity>(post);
+            var entity = _Mapper.Map<CompanyEntity>(Company);
             var result = await _repository.UpdateAsync(entity);
 
-            return _Mapper.Map<BlogPostDto>(result);
+            return _Mapper.Map<CompanyDto>(result);
         }
     }
 }

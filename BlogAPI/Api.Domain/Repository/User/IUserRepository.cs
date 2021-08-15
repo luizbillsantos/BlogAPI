@@ -12,6 +12,8 @@ namespace Api.Domain.Repository
     {
         Task<UserEntity> FindByLogin(string email);
 
-        Task<UserDto> GetCompleteById(int id);
+        Task<UserEntity> GetCompleteById(int id);
+
+        Task<List<UserEntity>> GetAllComplete();
     }
 }

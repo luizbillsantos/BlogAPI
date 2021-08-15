@@ -31,7 +31,7 @@ namespace Api.Data.Mapping
                    .HasMaxLength(10);
 
             builder.HasOne(a => a.Geo).WithMany(b => b.Addressess);
-            //builder.HasOne(a => a.User).WithOne(b => b.Address);
+            builder.HasOne(a => a.User).WithOne(b => b.Address);
         }
     }
 }

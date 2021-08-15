@@ -15,8 +15,8 @@ namespace Api.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("ProductVersion", "3.1.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Api.Domain.Entities.AddressEntity", b =>
@@ -28,8 +28,8 @@ namespace Api.Data.Migrations
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<DateTime?>("CreateAt")
                         .HasColumnType("datetime2");
@@ -39,25 +39,31 @@ namespace Api.Data.Migrations
 
                     b.Property<string>("Street")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Suite")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ZipCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.HasKey("Id");
 
                     b.HasIndex("GeoId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Address");
 
@@ -66,11 +72,12 @@ namespace Api.Data.Migrations
                         {
                             Id = 1,
                             City = "Lapa",
-                            CreateAt = new DateTime(2021, 8, 14, 16, 51, 53, 979, DateTimeKind.Local).AddTicks(3556),
+                            CreateAt = new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(5829),
                             GeoId = 1,
                             Street = "Estrada do Lara",
                             Suite = "Casa",
-                            UpdateAt = new DateTime(2021, 8, 14, 16, 51, 53, 979, DateTimeKind.Local).AddTicks(3562),
+                            UpdateAt = new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(5851),
+                            UserId = 1,
                             ZipCode = "83750-000"
                         });
                 });
@@ -87,8 +94,8 @@ namespace Api.Data.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(244)
-                        .HasColumnType("nvarchar(244)");
+                        .HasColumnType("nvarchar(244)")
+                        .HasMaxLength(244);
 
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime2");
@@ -112,16 +119,16 @@ namespace Api.Data.Migrations
 
                     b.Property<string>("Body")
                         .IsRequired()
-                        .HasMaxLength(8000)
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(8000);
 
                     b.Property<DateTime?>("CreateAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(244)
-                        .HasColumnType("nvarchar(244)");
+                        .HasColumnType("nvarchar(244)")
+                        .HasMaxLength(244);
 
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime2");
@@ -145,21 +152,21 @@ namespace Api.Data.Migrations
 
                     b.Property<string>("Body")
                         .IsRequired()
-                        .HasMaxLength(244)
-                        .HasColumnType("nvarchar(244)");
+                        .HasColumnType("nvarchar(244)")
+                        .HasMaxLength(244);
 
                     b.Property<DateTime?>("CreateAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<int>("PostId")
                         .HasColumnType("int");
@@ -183,21 +190,21 @@ namespace Api.Data.Migrations
 
                     b.Property<string>("Bs")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("CatchPhrase")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<DateTime?>("CreateAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(244)
-                        .HasColumnType("nvarchar(244)");
+                        .HasColumnType("nvarchar(244)")
+                        .HasMaxLength(244);
 
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime2");
@@ -212,9 +219,9 @@ namespace Api.Data.Migrations
                             Id = 1,
                             Bs = "Meu Teste Técnico",
                             CatchPhrase = "Teste",
-                            CreateAt = new DateTime(2021, 8, 14, 16, 51, 53, 976, DateTimeKind.Local).AddTicks(2403),
+                            CreateAt = new DateTime(2021, 8, 14, 20, 43, 38, 983, DateTimeKind.Local).AddTicks(6239),
                             Name = "BillSoft",
-                            UpdateAt = new DateTime(2021, 8, 14, 16, 51, 53, 977, DateTimeKind.Local).AddTicks(2661)
+                            UpdateAt = new DateTime(2021, 8, 14, 20, 43, 38, 985, DateTimeKind.Local).AddTicks(3754)
                         });
                 });
 
@@ -245,10 +252,10 @@ namespace Api.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2021, 8, 14, 16, 51, 53, 979, DateTimeKind.Local).AddTicks(2489),
+                            CreateAt = new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(629),
                             Lat = -25.722589m,
                             Lng = -49.763019m,
-                            UpdateAt = new DateTime(2021, 8, 14, 16, 51, 53, 979, DateTimeKind.Local).AddTicks(2519)
+                            UpdateAt = new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(661)
                         });
                 });
 
@@ -267,21 +274,21 @@ namespace Api.Data.Migrations
 
                     b.Property<string>("ThumbnailUrl")
                         .IsRequired()
-                        .HasMaxLength(244)
-                        .HasColumnType("nvarchar(244)");
+                        .HasColumnType("nvarchar(244)")
+                        .HasMaxLength(244);
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(244)
-                        .HasColumnType("nvarchar(244)");
+                        .HasColumnType("nvarchar(244)")
+                        .HasMaxLength(244);
 
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Url")
                         .IsRequired()
-                        .HasMaxLength(244)
-                        .HasColumnType("nvarchar(244)");
+                        .HasColumnType("nvarchar(244)")
+                        .HasMaxLength(244);
 
                     b.HasKey("Id");
 
@@ -297,9 +304,6 @@ namespace Api.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AddressId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
@@ -308,33 +312,31 @@ namespace Api.Data.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Phone")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("WebSite")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
 
                     b.HasIndex("CompanyId");
 
@@ -347,12 +349,12 @@ namespace Api.Data.Migrations
                         new
                         {
                             Id = 1,
-                            AddressId = 1,
                             CompanyId = 1,
-                            CreateAt = new DateTime(2021, 8, 14, 16, 51, 53, 979, DateTimeKind.Local).AddTicks(7691),
+                            CreateAt = new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(3359),
                             Email = "luizbillsantos@gmail.com",
                             Name = "Administrador",
-                            UpdateAt = new DateTime(2021, 8, 14, 16, 51, 53, 979, DateTimeKind.Local).AddTicks(7703),
+                            Phone = "5541999642960",
+                            UpdateAt = new DateTime(2021, 8, 14, 20, 43, 38, 987, DateTimeKind.Local).AddTicks(3367),
                             UserName = "luizbillsantos"
                         });
                 });
@@ -365,7 +367,11 @@ namespace Api.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Geo");
+                    b.HasOne("Api.Domain.Entities.UserEntity", "User")
+                        .WithOne("Address")
+                        .HasForeignKey("Api.Domain.Entities.AddressEntity", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Api.Domain.Entities.AlbumEntity", b =>
@@ -375,8 +381,6 @@ namespace Api.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Api.Domain.Entities.BlogPostEntity", b =>
@@ -386,8 +390,6 @@ namespace Api.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Api.Domain.Entities.CommentEntity", b =>
@@ -397,8 +399,6 @@ namespace Api.Data.Migrations
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Post");
                 });
 
             modelBuilder.Entity("Api.Domain.Entities.PhotoEntity", b =>
@@ -408,54 +408,15 @@ namespace Api.Data.Migrations
                         .HasForeignKey("AlbumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Album");
                 });
 
             modelBuilder.Entity("Api.Domain.Entities.UserEntity", b =>
                 {
-                    b.HasOne("Api.Domain.Entities.AddressEntity", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Api.Domain.Entities.CompanyEntity", "Company")
                         .WithMany("User")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Address");
-
-                    b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("Api.Domain.Entities.AlbumEntity", b =>
-                {
-                    b.Navigation("Photos");
-                });
-
-            modelBuilder.Entity("Api.Domain.Entities.BlogPostEntity", b =>
-                {
-                    b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("Api.Domain.Entities.CompanyEntity", b =>
-                {
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Api.Domain.Entities.GeoEntity", b =>
-                {
-                    b.Navigation("Addressess");
-                });
-
-            modelBuilder.Entity("Api.Domain.Entities.UserEntity", b =>
-                {
-                    b.Navigation("Albums");
-
-                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

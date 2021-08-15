@@ -27,10 +27,6 @@ namespace Api.Domain.Entities
         public string WebSite { get; set; }
 
         [Required]
-        [ForeignKey("Address")]
-        public int AddressId { get; set; }
-
-        [Required]
         [ForeignKey("Company")]
         public int CompanyId { get; set; }
 
@@ -41,5 +37,7 @@ namespace Api.Domain.Entities
         public virtual IEnumerable<BlogPostEntity> Posts { get; set; }
 
         public virtual IEnumerable<AlbumEntity> Albums { get; set; }
+
+        public virtual IEnumerable<CommentEntity> Comments { get; set; }
     }
 }

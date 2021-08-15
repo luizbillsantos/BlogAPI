@@ -1,7 +1,7 @@
 ﻿using Api.Domain.Dtos;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces;
-using Api.Domain.Interfaces.Services.Comment;
+using Api.Domain.Interfaces.Services;
 using AutoMapper;
 using System;
 using System.Collections.Generic;

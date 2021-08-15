@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Domain.Interfaces.Services.Address
+namespace Api.Domain.Interfaces.Services
 {
     public interface IGeoService
     {

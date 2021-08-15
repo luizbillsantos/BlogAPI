@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -14,6 +15,10 @@ namespace Api.Domain.Dtos
         [Required(ErrorMessage = "Body é um campo obrigatório")]
         [StringLength(8000, ErrorMessage = "Body deve ter no máximo {1} caracteres")]
         public string Body { get; set; }
+
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
+        public int UserId { get; set; }
 
     }
 }

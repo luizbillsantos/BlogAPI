@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Domain.Interfaces.Services.User
+namespace Api.Domain.Interfaces.Services
 {
     public interface ILoginService
     {

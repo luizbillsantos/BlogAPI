@@ -24,5 +24,7 @@ namespace Api.Domain.Dtos
         [StringLength(10, ErrorMessage = "ZipCode deve ter no máximo {1} caracteres")]
         public string ZipCode { get; set; }
 
+        [Required]
+        public GeoDtoCreate Geo { get; set; }
     }
 }

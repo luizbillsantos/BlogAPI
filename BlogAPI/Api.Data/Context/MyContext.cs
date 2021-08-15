@@ -9,6 +9,21 @@ namespace Api.Data.Context
 {
     public class MyContext : DbContext
     {
+        #region DbSet
+
+        public DbSet<UserEntity> DbUser { get; set; }
+        public DbSet<AddressEntity> DbAddress { get; set; }
+        public DbSet<GeoEntity> DbGeo { get; set; }
+        public DbSet<CompanyEntity> DbCompany { get; set; }
+
+
+        public DbSet<AlbumEntity> DbAlbum { get; set; }
+        public DbSet<BlogPostEntity> DbBlogPost { get; set; }
+        public DbSet<CommentEntity> DbComment { get; set; }
+        public DbSet<PhotoEntity> DbPhoto { get; set; }
+
+        #endregion
+
         public MyContext(DbContextOptions<MyContext> options) : base(options)
         {
         }
@@ -45,10 +60,22 @@ namespace Api.Data.Context
                 UpdateAt = DateTime.Now,
             });
 
+            modelBuilder.Entity<UserEntity>().HasData(new UserEntity()
+            {
+                Id = 1,
+                Name = "Administrador",
+                Email = "luizbillsantos@gmail.com",
+                UserName = "luizbillsantos",
+                Phone = "5541999642960",
+                CreateAt = DateTime.Now,
+                UpdateAt = DateTime.Now,
+                CompanyId = 1,
+            });
+
             modelBuilder.Entity<AddressEntity>().HasData(new AddressEntity
             {
                 Id = 1,
-                //UserId = 1,
+                UserId = 1,
                 CreateAt = DateTime.Now,
                 UpdateAt = DateTime.Now,
                 City = "Lapa",
@@ -58,17 +85,7 @@ namespace Api.Data.Context
                 GeoId = 1
             });
 
-            modelBuilder.Entity<UserEntity>().HasData(new UserEntity()
-            {
-                Id = 1,
-                Name = "Administrador",
-                Email = "luizbillsantos@gmail.com",
-                UserName = "luizbillsantos",
-                CreateAt = DateTime.Now,
-                UpdateAt = DateTime.Now,
-                CompanyId = 1,
-                AddressId = 1
-            });
         }
+
     }
 }

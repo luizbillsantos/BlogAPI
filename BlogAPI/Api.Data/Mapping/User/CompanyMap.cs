@@ -25,7 +25,6 @@ namespace Api.Data.Mapping
             builder.Property(u => u.Bs)
                    .IsRequired()
                    .HasMaxLength(100);
-
         }
     }
 }

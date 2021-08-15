@@ -1,14 +1,14 @@
 ﻿using Api.Domain.Dtos;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces;
-using Api.Domain.Interfaces.Services.Address;
+using Api.Domain.Interfaces.Services;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Service.Services.User
+namespace Api.Service.Services
 {
     public class AddressService : IAddressService
     {
@@ -23,30 +23,38 @@ namespace Api.Service.Services.User
             _repository = repository;
             _Mapper = mapper;
         }
-
-        public Task<bool> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            throw new NotImplementedException();
+            return await _repository.DeleteAsync(id);
         }
 
-        public Task<AddressDto> Get(int id)
+        public async Task<AddressDto> Get(int id)
         {
-            throw new NotImplementedException();
+            var entity = await _repository.SelectAsync(id);
+            return _Mapper.Map<AddressDto>(entity);
         }
 
-        public Task<IEnumerable<AddressDto>> GetAll()
+        public async Task<IEnumerable<AddressDto>> GetAll()
         {
-            throw new NotImplementedException();
+            var listEntity = await _repository.SelectAsync();
+
+            return _Mapper.Map<IEnumerable<AddressDto>>(listEntity);
         }
 
-        public Task<AddressDto> Post(AddressDtoCreate address)
+        public async Task<AddressDto> Post(AddressDtoCreate address)
         {
-            throw new NotImplementedException();
+            var entity = _Mapper.Map<AddressEntity>(address);
+            var result = await _repository.InsertAsync(entity);
+
+            return _Mapper.Map<AddressDto>(result);
         }
 
-        public Task<AddressDto> Put(AddressDtoCreate address)
+        public async Task<AddressDto> Put(AddressDtoCreate address)
         {
-            throw new NotImplementedException();
+            var entity = _Mapper.Map<AddressEntity>(address);
+            var result = await _repository.UpdateAsync(entity);
+
+            return _Mapper.Map<AddressDto>(result);
         }
     }
 }

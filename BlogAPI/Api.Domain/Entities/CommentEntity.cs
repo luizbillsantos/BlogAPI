@@ -24,6 +24,12 @@ namespace Api.Domain.Entities
         [MaxLength(244)]
         public string Body { get; set; }
 
+        [Required]
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+
         public virtual BlogPostEntity Post { get; set; }
+
+        public virtual UserEntity User { get; set; }
     }
 }

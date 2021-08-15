@@ -27,6 +27,8 @@ namespace Api.Data.Mapping
                    .HasMaxLength(244);
 
             builder.HasOne(a => a.Post).WithMany(b => b.Comments);
+
+            builder.HasOne(a => a.User).WithMany(b => b.Comments);
         }
     }
 }

@@ -14,8 +14,7 @@ namespace Api.Data.Mapping
             builder.ToTable("User");
             builder.HasKey(u => u.Id);
             builder.HasIndex(u => u.Email)
-                   .IsUnique();
-                   
+                   .IsUnique();      
             builder.Property(u => u.Name)
                    .IsRequired()
                    .HasMaxLength(100);
@@ -33,8 +32,14 @@ namespace Api.Data.Mapping
             builder.Property(u => u.WebSite)
                    .HasMaxLength(100);
 
-            builder.HasOne(a => a.Address);
+            builder.Property(u => u.CompanyId)
+                    .IsRequired();
+
+            builder.HasOne(a => a.Address).WithOne(b => b.User).HasForeignKey<AddressEntity>(c => c.UserId);
+
             builder.HasOne(a => a.Company).WithMany(b => b.User);
+
+            builder.HasMany(a => a.Comments).WithOne(b => b.User);
         }
     }
 }
