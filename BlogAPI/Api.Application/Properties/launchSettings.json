@@ -14,13 +14,7 @@
       "launchBrowser": true,
       "launchUrl": "index.html",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "DB_CONNECTION": "Server=tcp:tcc.database.windows.net,1433;Initial Catalog=BlogApi;Persist Security Info=False;User ID=tpmAdm;Password=lfbs@4545;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
-        "DATABASE": "SQLSERVER",
-        "MIGRATION": "APLICAR",
-        "Audience": "ExemploAudience",
-        "Issuer": "ExemploIssuer",
-        "Seconds": "3600"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "Api.Application": {
@@ -29,13 +23,7 @@
       "launchUrl": "index.html",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "DB_CONNECTION": "Server=tcp:tcc.database.windows.net,1433;Initial Catalog=BlogApi;Persist Security Info=False;User ID=tpmAdm;Password=lfbs@4545;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
-        "DATABASE": "SQLSERVER",
-        "MIGRATION": "APLICAR",
-        "Audience": "ExemploAudience",
-        "Issuer": "ExemploIssuer",
-        "Seconds": "3600"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
   }

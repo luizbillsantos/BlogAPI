@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 
 namespace Api.Application
 {
@@ -39,7 +40,7 @@ namespace Api.Application
             services.AddControllers();
 
             ConfigureService.ConfigureDepenciesService(services);
-            ConfigureRepository.ConfigureDepenciesRepository(services);
+            ConfigureRepository.ConfigureDepenciesRepository(services, Configuration);
 
             #region AutoMapper
 
@@ -60,14 +61,11 @@ namespace Api.Application
             services.AddSingleton(signinConfigurations);
 
             var tokenConfigurations = new TokenConfigurations();
-            //new ConfigureFromConfigurationOptions<TokenConfigurations>(
-            //    Configuration
-            //    .GetSection("TokenConfigurations"))
-            //    .Configure(tokenConfigurations);
 
-            tokenConfigurations.Audience = Environment.GetEnvironmentVariable("Audience");
-            tokenConfigurations.Issuer = Environment.GetEnvironmentVariable("Issuer");
-            tokenConfigurations.Seconds = Convert.ToInt32(Environment.GetEnvironmentVariable("Seconds"));
+            new ConfigureFromConfigurationOptions<TokenConfigurations>(
+                Configuration
+                .GetSection("TokenConfigurations"))
+                .Configure(tokenConfigurations);
 
             services.AddSingleton(tokenConfigurations);
 
@@ -80,8 +78,8 @@ namespace Api.Application
                 paramsValidation.IssuerSigningKey = signinConfigurations.Key;
                 //paramsValidation.ValidAudience = tokenConfigurations.Audience;
                 //paramsValidation.ValidIssuer = tokenConfigurations.Issuer;
-                paramsValidation.ValidAudience = Environment.GetEnvironmentVariable("Audience");
-                paramsValidation.ValidIssuer = Environment.GetEnvironmentVariable("Issuer");
+                paramsValidation.ValidAudience = tokenConfigurations.Audience;
+                paramsValidation.ValidIssuer = tokenConfigurations.Issuer;
                 paramsValidation.ValidateIssuerSigningKey = true;
                 paramsValidation.ValidateLifetime = true;
                 paramsValidation.ClockSkew = TimeSpan.Zero;
@@ -166,7 +164,7 @@ namespace Api.Application
             #region Migrations
 
             //Apply Migrations on startup
-            if (Environment.GetEnvironmentVariable("MIGRATION")?.ToLower() == "APLICAR".ToLower())
+            if (Configuration.GetValue<string>("MIGRATION")?.ToLower() == "APLICAR".ToLower())
             {
                 using (var service = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {

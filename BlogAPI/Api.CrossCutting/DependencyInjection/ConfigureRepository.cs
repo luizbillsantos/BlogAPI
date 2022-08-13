@@ -4,6 +4,7 @@ using Api.Data.Repository;
 using Api.Domain.Interfaces;
 using Api.Domain.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Api.CrossCutting.DependencyInjection
 {
     public class ConfigureRepository
     {
-        public static void ConfigureDepenciesRepository(IServiceCollection serviceCollection)
+        public static void ConfigureDepenciesRepository(IServiceCollection serviceCollection, IConfiguration configuration)
         {
             serviceCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             serviceCollection.AddScoped<IUserRepository, UserImplementation>();
@@ -25,8 +26,8 @@ namespace Api.CrossCutting.DependencyInjection
             serviceCollection.AddScoped<ICommentRepository, CommentImplementation>();
             serviceCollection.AddScoped<IPhotoRepository, PhotoImplementation>();
 
-            serviceCollection.AddDbContext<MyContext>(
-                options => options.UseSqlServer(Environment.GetEnvironmentVariable("DB_CONNECTION"))
+            serviceCollection.AddDbContext<MyContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
             );
         }
     }
