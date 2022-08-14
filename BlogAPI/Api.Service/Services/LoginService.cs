@@ -58,8 +58,7 @@ namespace Api.Service.Services
                         );
 
                     DateTime createDate = DateTime.Now;
-                    //DateTime expirationDate = DateTime.Now + TimeSpan.FromSeconds(_tokenConfigurations.Seconds);
-                    DateTime expirationDate = DateTime.Now + TimeSpan.FromSeconds(Convert.ToInt32(Environment.GetEnvironmentVariable("Seconds")));
+                    DateTime expirationDate = DateTime.Now + TimeSpan.FromSeconds(_tokenConfigurations.Seconds);
                     var handler = new JwtSecurityTokenHandler();
                     string token = CreateToken(identity, createDate, expirationDate, handler);
                     return SuccessObject(createDate, expirationDate, token, user);
@@ -85,10 +84,8 @@ namespace Api.Service.Services
         {
             var securityToken = handler.CreateToken(new SecurityTokenDescriptor
             {
-                Issuer = Environment.GetEnvironmentVariable("Issuer"),
-                //Issuer = _tokenConfigurations.Issuer,
-                Audience = Environment.GetEnvironmentVariable("Audience"),
-                //Audience = _tokenConfigurations.Audience,
+                Issuer = _tokenConfigurations.Issuer,
+                Audience = _tokenConfigurations.Audience,
                 SigningCredentials = _signingConfigurations.SigningCredentials,
                 Subject = identity,
                 NotBefore = createDate,
