@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31605.320
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Application", "Api.Application\Api.Application.csproj", "{7EB07CEC-A200-4A27-A8F2-62E29304AF6C}"
 EndProject
@@ -12,8 +12,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Service", "Api.Service\Api.Service.csproj", "{9629D696-F16C-4FB2-98C5-8CE434347E2A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.CrossCutting", "Api.CrossCutting\Api.CrossCutting.csproj", "{9CDE8D1A-DAF9-423B-8E45-E8B35AEE3500}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Data.Test", "Api.Data.Test\Api.Data.Test.csproj", "{D7BC36B2-D942-4BC5-91FE-1B419E364FD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,6 @@ Global
 		{9CDE8D1A-DAF9-423B-8E45-E8B35AEE3500}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CDE8D1A-DAF9-423B-8E45-E8B35AEE3500}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CDE8D1A-DAF9-423B-8E45-E8B35AEE3500}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7BC36B2-D942-4BC5-91FE-1B419E364FD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7BC36B2-D942-4BC5-91FE-1B419E364FD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7BC36B2-D942-4BC5-91FE-1B419E364FD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7BC36B2-D942-4BC5-91FE-1B419E364FD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
