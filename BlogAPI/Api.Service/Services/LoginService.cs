@@ -1,4 +1,5 @@
 ﻿using Api.Domain.Dtos;
+using Api.Domain.Dtos.User;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces.Services;
 using Api.Domain.Repository;
@@ -98,14 +99,14 @@ namespace Api.Service.Services
 
         private object SuccessObject(DateTime createDate, DateTime expirationDate, string token, LoginDto user)
         {
-            return new
+            return new LoginReturn
             {
-                authenticated = true,
-                create = createDate.ToString("yyyy-MM-dd HH:mm:ss"),
-                expiration = expirationDate.ToString("yyyy-MM-dd HH:mm:ss"),
-                accessToken = token,
-                userName = user.Email,
-                message = "Usuário Logado com sucesso"
+                Authenticated = true,
+                Create = createDate.ToString("yyyy-MM-dd HH:mm:ss"),
+                Expiration = expirationDate.ToString("yyyy-MM-dd HH:mm:ss"),
+                AccessToken = token,
+                UserName = user.Email,
+                Message = "Usuário Logado com sucesso"
             };
         }
     }
