@@ -35,9 +35,6 @@ namespace Api.Application.Controllers
         [Authorize("Bearer")]
         public async Task<ActionResult> GetAll()
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
             try
             {
                 return Ok(await _service.GetAll());
@@ -59,9 +56,6 @@ namespace Api.Application.Controllers
         [Route("{id}", Name = "/comment/Get")]
         public async Task<ActionResult> Get(int id)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
             try
             {
                 return Ok(await _service.Get(id));
@@ -107,28 +101,25 @@ namespace Api.Application.Controllers
             }
         }
 
-        ///// <summary>
-        ///// Delete comment from DB
-        ///// </summary>
-        ///// <param name="id">Comment Id</param>
-        ///// <returns>Bool</returns>
-        //[HttpDelete]
-        //[Route("{id}", Name = "/comment/Delete")]
-        //[Authorize("Bearer")]
-        //public async Task<ActionResult> Delete(int id)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
+        /// <summary>
+        /// Delete comment from DB
+        /// </summary>
+        /// <param name="id">Comment Id</param>
+        /// <returns>Bool</returns>
+        [HttpDelete]
+        [Route("{id}", Name = "/comment/Delete")]
+        [Authorize("Bearer")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            try
+            {
+                return Ok(await _service.Delete(id));
+            }
+            catch (ArgumentException e)
+            {
 
-        //    try
-        //    {
-        //        return Ok(await _service.Delete(id));
-        //    }
-        //    catch (ArgumentException e)
-        //    {
-
-        //        return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
-        //    }
-        //}
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
     }
 }
