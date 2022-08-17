@@ -50,7 +50,7 @@ namespace Api.Application.Tests.Config
             var response = await Client.PostAsJsonAsync("api/login", userData);
             response.EnsureSuccessStatusCode();
 
-            var apiResult = UsuarioToken = await response.Content.ReadAsStringAsync();
+            var apiResult = await response.Content.ReadAsStringAsync();
             var loginData = JsonConvert.DeserializeObject<LoginReturn>(apiResult);
             UsuarioToken = loginData.AccessToken;
         }
